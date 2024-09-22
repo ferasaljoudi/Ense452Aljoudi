@@ -17,3 +17,10 @@ Embedded and Real-Time Software Systems
 
 `Coming soon...`
 
+<br>
+<div style="width: 100%;">
+    <a href="#"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/BrownSVGs/technologiesUsed.svg" alt="Technologies Used" style="width: 100%"></a>
+</div>
+<br>
+
+`Coming soon...`
