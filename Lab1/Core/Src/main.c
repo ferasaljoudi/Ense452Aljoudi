@@ -105,6 +105,7 @@ int main(void)
 	  HAL_Delay(1000);
 	  */
 
+	  /* Phase 2 */
 	  if (__HAL_TIM_GET_COUNTER(&htim4) >= 1000) {
 		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 		  __HAL_TIM_SET_COUNTER(&htim4, 0);
