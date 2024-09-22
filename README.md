@@ -5,7 +5,7 @@
 
 <div align = "center">
 
-Embedded and Real-Time Software Systems
+ENSE452 class Embedded and Real-Time Software Systems
 
 </div>
 
@@ -15,7 +15,7 @@ Embedded and Real-Time Software Systems
 </div>
 <br>
 
-`Coming soon...`
+This repo will have the assignments and the labs for ENSE452 class.
 
 <br>
 <div style="width: 100%;">
@@ -23,4 +23,39 @@ Embedded and Real-Time Software Systems
 </div>
 <br>
 
-`Coming soon...`
+<h2 align = "center">👨‍💻 Languages</h2>
+
+<div align="center">
+<table>
+  <tr>
+    <td>
+        <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Left/c.svg" alt="C"></a>
+        <br>
+    </td>
+  </tr>
+</table>
+</div>
+
+<h2 align = "center">💻 Tools and Platforms</h2>
+
+<div align="center">
+<table>
+  <tr>
+    <td>
+        `Coming soon...`
+    </td>
+  </tr>
+</table>
+</div>
+
+<h2 align = "center">⚙️ Hardware Development</h2>
+
+<div align="center">
+<table>
+  <tr>
+    <td>
+        <a href="https://www.st.com/en/microcontrollers-microprocessors/stm32f1-series.html"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Hardware/Left/stm32.svg" alt="Stm32"></a>
+    </td>
+  </tr>
+</table>
+</div>
