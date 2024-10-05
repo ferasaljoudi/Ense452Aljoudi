@@ -31,6 +31,7 @@ This repo will have the assignments and the labs for ENSE452 class.
     <td>
         <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Left/c.svg" alt="C"></a>
         <br>
+        <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Right/cpp.svg" alt="C++"></a>
     </td>
   </tr>
 </table>
@@ -42,7 +43,9 @@ This repo will have the assignments and the labs for ENSE452 class.
 <table>
   <tr>
     <td>
-        `Coming soon...`
+        <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Left/keil.svg" alt="Keil uVision"></a>
+        <br>
+        <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Right/stm32Cube.svg" alt="STM32Cube"></a>
     </td>
   </tr>
 </table>
