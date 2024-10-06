@@ -31,7 +31,7 @@ This repo will have the assignments and the labs for ENSE452 class.
     <td>
         <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Left/c.svg" alt="C"></a>
         <br>
-        <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Right/cpp.svg" alt="C++"></a>
+        <a href="https://www.w3schools.com/cpp/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Right/cpp.svg" alt="C++"></a>
     </td>
   </tr>
 </table>
@@ -43,9 +43,9 @@ This repo will have the assignments and the labs for ENSE452 class.
 <table>
   <tr>
     <td>
-        <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Left/keil.svg" alt="Keil uVision"></a>
+        <a href="https://www.keil.com/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Left/keil.svg" alt="Keil uVision"></a>
         <br>
-        <a href="https://www.w3schools.com/c/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Right/stm32Cube.svg" alt="STM32Cube"></a>
+        <a href="https://www.st.com/en/development-tools/stm32cubeide.html"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Right/stm32Cube.svg" alt="STM32Cube"></a>
     </td>
   </tr>
 </table>
