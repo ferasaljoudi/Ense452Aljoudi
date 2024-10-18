@@ -73,7 +73,7 @@ void handle_input(const char *cmd) {
         uart_transmit("\x1b[33mYou turned the LED ON\r\n\x1b[0m");
     } else if (strcmp(cmd, "0") == 0) {
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-        uart_transmit("\x1b[33m You turned the LED OFF\r\n\x1b[0m");
+        uart_transmit("\x1b[33mYou turned the LED OFF\r\n\x1b[0m");
     } else if (strcmp(cmd, "s") == 0 || strcmp(cmd, "S") == 0) {
     	if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5)) {
     		uart_transmit("\x1b[32mLED is ON\r\n\x1b[0m");
