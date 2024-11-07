@@ -4,7 +4,7 @@
 
 </div>
 
-- <b>Processor:</b> 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40 GHz
+- <b>Target:</b> 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40 GHz
 - <b>Date:</b> Nov. 06, 2024
 - <b>Compiler:</b> gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
 - <b>Measurement:</b> using clock_gettime() and `-O0` Switches with 1e9 loops:
