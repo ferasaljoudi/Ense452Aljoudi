@@ -1,0 +1,5 @@
+../Core/Src/cli.c:11:6:uart_transmit	2
+../Core/Src/cli.c:17:6:upper_window	1
+../Core/Src/cli.c:36:6:execute_cli	7
+../Core/Src/cli.c:68:6:handle_input	8
+../Core/Src/cli.c:97:6:HAL_UART_RxCpltCallback	2
