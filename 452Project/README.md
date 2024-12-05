@@ -15,9 +15,9 @@ The goal of this project is to design an elevator control system using the STM32
 
 <b>1. CLI Commands:</b>
 
-   - `1`, `2`, `3`, `4`: Select floors.
-   - `o`, `c`: Open and close doors.
-   - `M`: Activate maintenance mode.
+- `1`, `2`, `3`, `4`: Select floors.
+- `o`, `c`: Open and close doors.
+- `M`: Activate maintenance mode.
 
 <b>2. Tasks:</b>
 
@@ -30,5 +30,6 @@ The goal of this project is to design an elevator control system using the STM32
 - `Emergency Button` Triggered by EXTI0_IRQHandler to enter emergency mode.
 - `UART Communication` Processes user commands.
 
-
 ### [Milestone.pdf](./Milestone.pdf) outlines the completed work in the first phase and future tasks for the final phase.
+
+### [ElevatorProject.pdf](./ElevatorProject.pdf) outlines the completed work in the final phase.
