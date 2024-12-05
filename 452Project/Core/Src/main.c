@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include "cmsis_os.h"
+#include "elevator.h"
 
+// Global variables
 TIM_HandleTypeDef htim2;
 UART_HandleTypeDef huart2;
 osThreadId defaultTaskHandle;
@@ -11,6 +13,7 @@ volatile uint32_t elapsedTime = 0;
 char elevatorState[20] = "Idle";
 volatile uint8_t currentFloor = 1;
 
+// Function prototypes for system configuration and tasks
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
@@ -19,9 +22,6 @@ void StartDefaultTask(void const *argument);
 void StatusWindowTask(void const *argument);
 void ProcessUserInputTask(void const *argument);
 
-void UpdateElevatorVisuals(void);
-void UpdateStatusWindow(void);
-void UpdateInputWindow(const char *inputBuffer);
 
 int main(void)
 {
@@ -31,15 +31,20 @@ int main(void)
     MX_USART2_UART_Init();
     MX_TIM2_Init();
 
+    // Create RTOS tasks
+    // Emergency handling task
     osThreadDef(defaultTask, StartDefaultTask, osPriorityLow, 0, 128);
     defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+    // Timer task
     osThreadDef(statusTask, StatusWindowTask, osPriorityNormal, 0, 256);
     osThreadCreate(osThread(statusTask), NULL);
 
+    // Handling user commands task
     osThreadDef(userInputTask, ProcessUserInputTask, osPriorityNormal, 0, 128);
     osThreadCreate(osThread(userInputTask), NULL);
 
+    // Start the RTOS kernel
     osKernelStart();
 
     while (1)
@@ -150,6 +155,7 @@ static void MX_GPIO_Init(void)
     HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 }
 
+// Task for handling emergency mode and resetting the elevator state
 void StartDefaultTask(void const *argument)
 {
     for (;;)
@@ -169,6 +175,7 @@ void StartDefaultTask(void const *argument)
     osDelay(100);
 }
 
+// Task to keep updating the timer on the terminal
 void StatusWindowTask(void const *argument)
 {
     for (;;)
@@ -179,6 +186,7 @@ void StatusWindowTask(void const *argument)
     }
 }
 
+// Task to process user input from the UART terminal
 void ProcessUserInputTask(void const *argument)
 {
     uint8_t receivedChar;
@@ -187,139 +195,108 @@ void ProcessUserInputTask(void const *argument)
 
     for (;;)
     {
+    	// Wait for a character from the UART
         if (HAL_UART_Receive(&huart2, &receivedChar, 1, HAL_MAX_DELAY) == HAL_OK)
         {
+        	// Ignore newline characters
             if (receivedChar != '\r' && receivedChar != '\n')
             {
-                inputBuffer[inputLen++] = receivedChar;
+                inputBuffer[inputLen++] = receivedChar; // Add the character to input buffer
                 inputBuffer[inputLen] = '\0'; // Null-terminate the string
             }
             else
             {
-                // Process the command on Enter key
+                // Process the command
                 switch (inputBuffer[0])
                 {
+                // Open the elevator door
                 case 'o':
+                	if (strcmp(elevatorState, "Emergency Mode") == 0) break;
                     strcpy(elevatorState, "Door opened");
+                    elapsedTime++;
                     UpdateStatusWindow();
-                    HAL_Delay(3000);
+                    HAL_Delay(1500);
                     strcpy(elevatorState, "Door closed");
+                    elapsedTime++;
                     UpdateStatusWindow();
-                    HAL_Delay(2000);
+                    HAL_Delay(1500);
                     strcpy(elevatorState, "Idle");
+                    elapsedTime++;
                     UpdateStatusWindow();
                     break;
+                // Close the elevator door
                 case 'c':
+                	if (strcmp(elevatorState, "Emergency Mode") == 0) break;
                     strcpy(elevatorState, "Door closed");
+                    elapsedTime++;
                     UpdateStatusWindow();
-                    HAL_Delay(2000);
+                    HAL_Delay(1500);
                     strcpy(elevatorState, "Idle");
+                    elapsedTime++;
                     UpdateStatusWindow();
                     break;
-                case '1':
-                case '2':
-                case '3':
-                case '4':
+                case '1': // Move to floor 1
+                case '2': // Move to floor 2
+                case '3': // Move to floor 3
+                case '4': // Move to floor 4
+                	if (strcmp(elevatorState, "Emergency Mode") == 0) break;
                 	uint8_t targetFloor = inputBuffer[0] - '0';
                 	while (currentFloor != targetFloor)
 					{
+                		if (strcmp(elevatorState, "Emergency Mode") == 0) {
+                			targetFloor = currentFloor; // In case of emergency
+                			break;
+                		}
 						if (currentFloor < targetFloor)
 							currentFloor++;
 						else if (currentFloor > targetFloor)
 							currentFloor--;
-
 						// Update visuals and status for each floor
 						strcpy(elevatorState, "Elevator moving");
+						elapsedTime++;
 						UpdateStatusWindow();
-						HAL_Delay(1500);
+						HAL_Delay(1300);
 					}
-
-					// After reaching the target floor
+                	if (strcmp(elevatorState, "Emergency Mode") == 0) break;
+					// Door operations after reaching the target floor
 					strcpy(elevatorState, "Door opened");
+					elapsedTime++;
 					UpdateStatusWindow();
-					HAL_Delay(3000);
+					HAL_Delay(1500);
 
 					strcpy(elevatorState, "Door closed");
+					elapsedTime++;
 					UpdateStatusWindow();
-					HAL_Delay(2000);
+					HAL_Delay(1500);
 
 					strcpy(elevatorState, "Idle");
+					elapsedTime++;
 					UpdateStatusWindow();
                     break;
-                case 'M':
+                case 'M': // Enter maintenance mode
                     strcpy(elevatorState, "Maintenance Mode");
                     UpdateStatusWindow();
                     while (1)
                     {
-                        osDelay(100);
+                    	HAL_Delay(1000);
+                    	elapsedTime++;
+                    	UpdateStatusWindow();
                     }
                     break;
+				// Handle invalid input
                 default:
+                	invalidEntry();
+                	elapsedTime++;
                     break;
                 }
                 // Clear the input buffer
                 inputLen = 0;
                 inputBuffer[0] = '\0';
             }
-
-            // Update the input window
-            UpdateInputWindow(inputBuffer);
         }
+        // Update the input window
+		UpdateInputWindow(inputBuffer);
     }
-}
-
-void UpdateInputWindow(const char *inputBuffer)
-{
-    char buffer[300];
-    int len = 0;
-
-    // Position the cursor at row 14
-    len += snprintf(buffer + len, sizeof(buffer) - len, "\033[14;1H");
-
-    // Display the input prompt
-    len += snprintf(buffer + len, sizeof(buffer) - len, "User Input: %s", inputBuffer);
-
-    // Clear the remaining line
-    len += snprintf(buffer + len, sizeof(buffer) - len, "\033[K");
-
-    // Transmit the input buffer to the terminal
-    HAL_UART_Transmit(&huart2, (uint8_t *)buffer, len, HAL_MAX_DELAY);
-}
-
-void UpdateStatusWindow(void)
-{
-    char buffer[100];
-    const char clearCommand[] = "\033[H\033[J"; // Clear screen
-    HAL_UART_Transmit(&huart2, (uint8_t *)clearCommand, sizeof(clearCommand) - 1, HAL_MAX_DELAY);
-
-    int len = snprintf(buffer, sizeof(buffer),
-                       "Time: %lus\r\nState: %s\r\nFloor: %u\r\n\n********************************\r\n\n",
-                       elapsedTime, elevatorState, currentFloor);
-    HAL_UART_Transmit(&huart2, (uint8_t *)buffer, len, HAL_MAX_DELAY);
-
-    UpdateElevatorVisuals();
-
-    // Move cursor to the input window row
-    const char inputPrompt[] = "\033[14;1H";
-    HAL_UART_Transmit(&huart2, (uint8_t *)inputPrompt, sizeof(inputPrompt) - 1, HAL_MAX_DELAY);
-}
-
-void UpdateElevatorVisuals(void) {
-    char buffer[800];
-    int len = 0;
-
-    for (int floor = 4; floor >= 1; floor--) {
-        if (floor == currentFloor) {
-            len += snprintf(buffer + len, sizeof(buffer) - len, "\033[32mFloor %d: [---]\033[0m\r\n", floor);
-        } else {
-            len += snprintf(buffer + len, sizeof(buffer) - len, "Floor %d: [---]\r\n", floor);
-        }
-    }
-
-    len += snprintf(buffer + len, sizeof(buffer) - len, "\n\r********************************\r\n\n");
-
-    // Transmit buffer
-    HAL_UART_Transmit(&huart2, (uint8_t *)buffer, len, HAL_MAX_DELAY);
 }
 
 void Error_Handler(void)

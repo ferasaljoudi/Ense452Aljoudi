@@ -1,0 +1,4 @@
+../Core/Src/elevator.c:13:6:UpdateStatusWindow	136	static
+../Core/Src/elevator.c:34:6:UpdateElevatorVisuals	816	static
+../Core/Src/elevator.c:54:6:UpdateInputWindow	320	static
+../Core/Src/elevator.c:73:6:invalidEntry	312	static

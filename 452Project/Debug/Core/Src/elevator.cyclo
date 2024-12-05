@@ -1,0 +1,4 @@
+../Core/Src/elevator.c:13:6:UpdateStatusWindow	1
+../Core/Src/elevator.c:34:6:UpdateElevatorVisuals	3
+../Core/Src/elevator.c:54:6:UpdateInputWindow	1
+../Core/Src/elevator.c:73:6:invalidEntry	1
