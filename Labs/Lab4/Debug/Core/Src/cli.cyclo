@@ -1,7 +1,0 @@
-../Core/Src/cli.c:11:6:cli_print	1
-../Core/Src/cli.c:17:6:toggle_led.part.0	1
-../Core/Src/cli.c:17:6:toggle_led	2
-../Core/Src/cli.c:33:6:query_led	2
-../Core/Src/cli.c:47:6:cli_help	1
-../Core/Src/cli.c:58:6:cli_init	1
-../Core/Src/cli.c:70:6:cli_process	19

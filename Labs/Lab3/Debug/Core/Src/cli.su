@@ -1,5 +1,0 @@
-../Core/Src/cli.c:11:6:uart_transmit	16	static
-../Core/Src/cli.c:17:6:upper_window	8	static
-../Core/Src/cli.c:36:6:execute_cli	8	static
-../Core/Src/cli.c:68:6:handle_input	16	static
-../Core/Src/cli.c:97:6:HAL_UART_RxCpltCallback	16	static

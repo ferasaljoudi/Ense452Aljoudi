@@ -1,6 +1,0 @@
-../Core/Src/cli.c:10:6:cli_print	16	static
-../Core/Src/cli.c:16:6:toggle_led	16	static
-../Core/Src/cli.c:32:6:query_led	16	static
-../Core/Src/cli.c:46:6:cli_help	8	static
-../Core/Src/cli.c:55:6:cli_init	8	static
-../Core/Src/cli.c:63:6:cli_process	16	static
